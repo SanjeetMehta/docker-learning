@@ -3,11 +3,14 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
-# Copy current directory into container
-COPY ./ ./
+# Only copy package.json
+COPY ./package.json ./
 
 # Install some dependencies
 RUN npm install
+
+# Copy current directory into container
+COPY ./ ./
 
 # Default command
 CMD ["npm", "start"]
