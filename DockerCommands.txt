@@ -1,0 +1,71 @@
+Docker Run
+	docker run hello-world
+
+Overriding the default command
+	docker run busybox echo hi there
+
+
+List all running container
+	docker ps
+
+List all exited container
+	docker ps --all
+
+
+Docker command Run in details
+	docker run = docker create + docker start
+
+	docker create hello-world  (it returns container id)
+	docker start hello-world  (logs are not attached to the screen )
+	docker start -a hello-world (logs are attached to the screen)
+
+
+Restarting stopped container
+	docker ps -all (grab the container id which needs to be restarted)
+	docker start -a <container_id>
+
+Removing stopped container
+	docker system prune
+
+
+Retrieving log output
+	docker logs <container_id>
+
+Stopping containers
+	stop command - waits for some time before killing the container
+		docker stop <container_id>
+
+	kill command - kills the container immediately
+		docker kill <container_id>
+
+Multi-command-container (images/programs which needs multiple commands for interaction)
+	docker run redis
+
+Executing command in running container
+	docker exec -it <contianer_id> <command>
+
+The purpose for -it in above command
+	-i terminal attached to stdin channel of container
+	-t format the o/p
+
+Getting a command prompt in a container
+	docker exec -it <contianer_id> sh
+	docker exec -it <contianer_id> /bin/bash	
+
+Starting container with shell
+	docker run -it <image_name> sh (this will restrict the default command from running)
+
+Container isolation
+	Nothing is share between the container unless someone configures it manually
+
+Building a dockerfile
+	docke build .
+
+Tagging an Image
+	docker build -t dockerId/repoName:version .
+
+Manual image generation from a container.
+	docker commit -c 'CMD ["redis-server"]' <container_id>
+
+Container port mapping
+	docker run -p <port_of_host_machine>:<port_of_container> image_id
