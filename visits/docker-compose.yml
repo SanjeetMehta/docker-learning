@@ -1,0 +1,11 @@
+version: "3"
+
+
+services:  # containers are referred to as services
+  redis-server:
+    image: "redis"
+  node-app:
+    restart: on-failure # values: "no"(this should always be inside quotes), on-failure, always,  unless-stopped
+    build: .
+    ports:
+      - "4001:8081" # port_on_local_machine:port_on_docker_container
