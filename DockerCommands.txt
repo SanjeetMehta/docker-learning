@@ -19,6 +19,8 @@ Docker command Run in details
 	docker start hello-world  (logs are not attached to the screen )
 	docker start -a hello-world (logs are attached to the screen)
 
+Docker run in demon mode
+	docker run -d <image_name>
 
 Restarting stopped container
 	docker ps -all (grab the container id which needs to be restarted)
@@ -69,3 +71,28 @@ Manual image generation from a container.
 
 Container port mapping
 	docker run -p <port_of_host_machine>:<port_of_container> image_id
+
+Run docker compose
+	docker-compose up (this should always be run where docker-compose.yml file is available)
+
+Rebuild images listed inside of docker-compose file
+	docker-compose up --build 
+
+Running container in demon mode from docker-compose file
+	docker-compose up -d
+
+Stopping containers started by docker-compose
+	docker-compose down
+
+Process.exit status codes
+	0: We exited and everything is ok
+	1,2,3, etc: We exited because something went wrong
+
+Docker container restart policies inside of docker compose file:
+	"no": Never attempts to restart this containerit it stops or crashes. (This is default, and should always be inside quotes as docker file treats no as false)
+	always: If this container stops "for any reason" always attempt to restart it.
+	on-failure: Only restart if the container stops with an error code.
+	unless-stopped: Always restart unless we (the developer) forcibly stop it
+
+Status of docker compose
+	docker-compose ps (this should always be run where docker-compose.yml file is available)
