@@ -72,6 +72,9 @@ Manual image generation from a container.
 Container port mapping
 	docker run -p <port_of_host_machine>:<port_of_container> image_id
 
+Docker Compose:
+	This automatically takes care of the networking between the containers.
+
 Run docker compose
 	docker-compose up (this should always be run where docker-compose.yml file is available)
 
@@ -96,3 +99,14 @@ Docker container restart policies inside of docker compose file:
 
 Status of docker compose
 	docker-compose ps (this should always be run where docker-compose.yml file is available)
+
+Running a dockerfile with a custom file name
+	docker build -f Dockerfile.dev -t dockerId/repoName:version .
+
+Setup volumes
+	docker run -p port_of_host_machine:port_of_container -v <host_path>:<container_path> <image_id>
+	docker run -p 3000:3000 -v $(pwd):/app dockerId/repoName:version
+
+	folder_inside_the_container_it_will_be_bookmarked: doesnot map with host path
+	docker run -p port_of_host_machine:port_of_container -v <folder_inside_the_container_it_will_be_bookmarked> -v <host_path>:<container_path> <image_id>
+	docker run -p port_of_host_machine:port_of_container -v <container_path> -v $(pwd):/app <image_id>
