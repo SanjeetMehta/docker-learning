@@ -6,6 +6,7 @@ COPY package.json .
 
 RUN npm install
 
-COPY ./ ./
+# We can ignore this if we are directly mounting the working directory into the docker images.
+COPY ./ ./ 
 
 CMD ["npm", "run", "start"]

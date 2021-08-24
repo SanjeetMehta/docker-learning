@@ -1,0 +1,19 @@
+version: "3"
+services: # Services are containers
+  web: # This name can be anything, its the name of service.
+    build:
+      context: ./ # Context from where all the files are to be used
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes: # For mounting the volumes.
+      - /usr/app/node_modules # Do not mount this path with the host system's path, use containers path
+      - ./:/usr/app # Mapping between hoost:container paths
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/app/node_modules
+      - ./:/usr/app
+    command: ["npm", "run", "test"] # overrides the starting commands
