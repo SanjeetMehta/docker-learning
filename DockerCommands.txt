@@ -54,6 +54,9 @@ Getting a command prompt in a container
 	docker exec -it <contianer_id> sh
 	docker exec -it <contianer_id> /bin/bash	
 
+Attaching to a already runnning process on container
+	docker attach <container_id>   // here we are attaching to stdin, stdout, and stderr of the contianer
+
 Starting container with shell
 	docker run -it <image_name> sh (this will restrict the default command from running)
 
