@@ -113,3 +113,9 @@ Setup volumes
 	folder_inside_the_container_it_will_be_bookmarked: doesnot map with host path
 	docker run -p port_of_host_machine:port_of_container -v <folder_inside_the_container_it_will_be_bookmarked> -v <host_path>:<container_path> <image_id>
 	docker run -p port_of_host_machine:port_of_container -v <container_path> -v $(pwd):/app <image_id>
+
+Multi stage build
+	This helps us to use multiple docker images to coomplete our build.
+	In the frontend folder, we have a Dockerfile, in that we have 2 stages.
+		 i. Use node:alpine image for building the build folder.
+		ii. Use nginx image to serve up the build folder which was created in step i.
