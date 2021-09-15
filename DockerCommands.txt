@@ -120,5 +120,9 @@ Multi stage build
 		 i. Use node:alpine image for building the build folder.
 		ii. Use nginx image to serve up the build folder which was created in step i.
 
-CI tools can discover opened if port are exposed using "EXPOSE" command
+CI tools can discover the ports if port are exposed using "EXPOSE" command
 	EXPOSE 80 // exposes the port which can be mapped to the host system
+
+Setting environment variables
+	 i. using variableName=value
+	ii. using variableName (this will take the values from your computer)
